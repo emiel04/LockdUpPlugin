@@ -1,0 +1,6 @@
+name: LockdUp
+version: '${project.version}'
+main: me.emiel.lockdup.LockdUp
+api-version: 1.19
+depend: [ WorldEdit, WorldGuard ]
+authors: [ Emiel ]
