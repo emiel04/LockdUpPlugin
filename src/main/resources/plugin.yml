@@ -4,3 +4,10 @@ main: me.emiel.lockdup.LockdUp
 api-version: 1.19
 depend: [ WorldEdit, WorldGuard ]
 authors: [ Emiel ]
+commands:
+  lockdup:
+    description: Base command for the plugin
+    aliases:
+      - lu
+      - lockedup
+    usage: /<command> <sub-command>

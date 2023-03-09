@@ -1,0 +1,9 @@
+#Prefix
+main_color: "&3"
+accent_color1: "&6"
+prefix: "LockdUp"
+
+# Leveling
+multiplier-per-level: 1.20 #how higher the slower people will rank up. 1 means same xp per level
+xp-per-level: 100
+levels-up-per-escape: 5
