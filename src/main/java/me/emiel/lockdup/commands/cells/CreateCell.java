@@ -11,12 +11,12 @@ import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 import me.emiel.lockdup.commandmanagerlib.SubCommand;
-import me.emiel.lockdup.Helper.MessageSender;
+import me.emiel.lockdup.helper.MessageSender;
 import me.emiel.lockdup.LockdUp;
-import me.emiel.lockdup.Managers.CellManager;
-import me.emiel.lockdup.Managers.CellDoorManager;
-import me.emiel.lockdup.Model.Cell;
-import me.emiel.lockdup.Model.Size;
+import me.emiel.lockdup.managers.CellManager;
+import me.emiel.lockdup.managers.CellDoorManager;
+import me.emiel.lockdup.model.Cell;
+import me.emiel.lockdup.model.Size;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -60,7 +60,7 @@ public class CreateCell implements SubCommand {
         Player player = (Player) sender;
 
         //check if the arguments are right
-        if(!CheckArgs(args)){
+        if(!checkArgs(args)){
             MessageSender.sendErrorWithPrefix(player, "Please use the command like this: /cells create <cell name> <small,medium,large>");
             return;
         }
@@ -106,13 +106,13 @@ public class CreateCell implements SubCommand {
         Cell createdCell;
 
         if(size.equalsIgnoreCase("small")){
-            createdCell = CellManager.CreateCell(region, name, Size.Small);
+            createdCell = CellManager.createCell(region, name, Size.Small);
 
         }else if(size.equalsIgnoreCase("medium")){
-            createdCell = CellManager.CreateCell(region, name, Size.Medium);
+            createdCell = CellManager.createCell(region, name, Size.Medium);
 
         }else if(size.equalsIgnoreCase("large")){
-            createdCell = CellManager.CreateCell(region, name, Size.Large);
+            createdCell = CellManager.createCell(region, name, Size.Large);
         }
         else{
             MessageSender.sendErrorWithPrefix(player, "Please use the command like this: /cells create <cell name> <small,medium,large>");
@@ -123,9 +123,9 @@ public class CreateCell implements SubCommand {
 
         MessageSender.sendMessageWithPrefix(player, "&aSuccessfully created cell!");
         //give door to player
-        player.getInventory().addItem(CellDoorManager.getDoor(createdCell.get_cellid()));
+        player.getInventory().addItem(CellDoorManager.getDoor(createdCell.getCellid()));
     }
-    private boolean CheckArgs(String[] args) {
+    private boolean checkArgs(String[] args) {
         if(args.length != 2) return false;
         return args[1].equalsIgnoreCase("small") || args[1].equalsIgnoreCase("medium") || args[1].equalsIgnoreCase("large");
     }

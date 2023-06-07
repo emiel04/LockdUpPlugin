@@ -1,10 +1,10 @@
 package me.emiel.lockdup.commands.cells;
 
 import me.emiel.lockdup.commandmanagerlib.SubCommand;
-import me.emiel.lockdup.Helper.MessageSender;
-import me.emiel.lockdup.Managers.CellDoorManager;
-import me.emiel.lockdup.Managers.CellManager;
-import me.emiel.lockdup.Model.Cell;
+import me.emiel.lockdup.helper.MessageSender;
+import me.emiel.lockdup.managers.CellDoorManager;
+import me.emiel.lockdup.managers.CellManager;
+import me.emiel.lockdup.model.Cell;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -36,7 +36,7 @@ public class GetCellDoor implements SubCommand {
     @Override
     public List<String> getTabCompletion(int index, String[] args) {
         return CellManager.getCells().stream()
-                .map(Cell::get_cellName)
+                .map(Cell::getCellName)
                 .collect(Collectors.toList());
     }
 
@@ -54,9 +54,9 @@ public class GetCellDoor implements SubCommand {
             MessageSender.sendErrorWithPrefix(p, "This cell does not exist!");
             return;
         }
-        ItemStack stack = CellDoorManager.getDoor(cell.get_cellid());
+        ItemStack stack = CellDoorManager.getDoor(cell.getCellid());
         p.getInventory().addItem(stack);
-        MessageSender.sendMessageWithPrefix(p, "Given the door for cell: &l&b" + cell.get_cellName());
+        MessageSender.sendMessageWithPrefix(p, "Given the door for cell: &l&b" + cell.getCellName());
 
     }
 }

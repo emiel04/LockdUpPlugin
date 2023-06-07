@@ -1,9 +1,9 @@
 package me.emiel.lockdup.commands.cells;
 
 import me.emiel.lockdup.commandmanagerlib.SubCommand;
-import me.emiel.lockdup.Helper.MessageSender;
-import me.emiel.lockdup.Managers.CellManager;
-import me.emiel.lockdup.Model.Cell;
+import me.emiel.lockdup.helper.MessageSender;
+import me.emiel.lockdup.managers.CellManager;
+import me.emiel.lockdup.model.Cell;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -34,7 +34,7 @@ public class DeleteCell implements SubCommand {
     @Override
     public List<String> getTabCompletion(int index, String[] args) {
         return CellManager.getCells().stream()
-                .map(Cell::get_cellName)
+                .map(Cell::getCellName)
                 .collect(Collectors.toList());
     }
 

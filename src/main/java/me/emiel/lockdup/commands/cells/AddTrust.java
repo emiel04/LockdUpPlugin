@@ -1,9 +1,9 @@
 package me.emiel.lockdup.commands.cells;
 
 import me.emiel.lockdup.commandmanagerlib.SubCommand;
-import me.emiel.lockdup.Helper.MessageSender;
-import me.emiel.lockdup.Managers.CellManager;
-import me.emiel.lockdup.Model.Cell;
+import me.emiel.lockdup.helper.MessageSender;
+import me.emiel.lockdup.managers.CellManager;
+import me.emiel.lockdup.model.Cell;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
@@ -61,7 +61,7 @@ public class AddTrust implements SubCommand {
             MessageSender.sendMessageWithPrefix(p, "You don't have a cell!");
             return ;
         }
-        if(CellManager.isPlayerTrusted(cell.get_cellid(), target.getUniqueId())){
+        if(CellManager.isPlayerTrusted(cell.getCellid(), target.getUniqueId())){
             MessageSender.sendMessageWithPrefix(p, "This player is already trusted!");
             return ;
         }

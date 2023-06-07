@@ -1,8 +1,8 @@
 package me.emiel.lockdup.commands.cells;
 
 import me.emiel.lockdup.commandmanagerlib.SubCommand;
-import me.emiel.lockdup.Helper.MessageSender;
-import me.emiel.lockdup.Managers.CellManager;
+import me.emiel.lockdup.helper.MessageSender;
+import me.emiel.lockdup.managers.CellManager;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -38,7 +38,7 @@ public class InitializeCellWorld implements SubCommand {
     public void perform(CommandSender sender, String[] args) {
         if(sender instanceof Player){
             Player p = (Player) sender;
-            CellManager.InstantiateCellTemplate(p.getWorld());
+            CellManager.instantiateCellTemplate(p.getWorld());
             MessageSender.sendMessageWithPrefix(p, "Successfully initialized the cells in world: " + p.getWorld().getName());
         }else{
             sender.sendMessage("Be a player!");

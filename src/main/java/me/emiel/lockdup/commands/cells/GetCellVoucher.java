@@ -1,10 +1,10 @@
 package me.emiel.lockdup.commands.cells;
 
 import me.emiel.lockdup.commandmanagerlib.SubCommand;
-import me.emiel.lockdup.Helper.MessageSender;
-import me.emiel.lockdup.Items.CellVoucher;
-import me.emiel.lockdup.Managers.CellManager;
-import me.emiel.lockdup.Model.Size;
+import me.emiel.lockdup.helper.MessageSender;
+import me.emiel.lockdup.items.CellVoucher;
+import me.emiel.lockdup.managers.CellManager;
+import me.emiel.lockdup.model.Size;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
