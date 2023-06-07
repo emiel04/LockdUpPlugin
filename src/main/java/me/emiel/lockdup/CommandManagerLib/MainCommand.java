@@ -15,12 +15,12 @@ public abstract class MainCommand implements TabExecutor
     protected final Set<SubCommand> subCommands = new HashSet<>();
 
     protected final String noPermMessage;
-    protected final ArgumentMatcher argumentMatcher;
+    protected final IArgumentMatcher argumentMatcher;
 
-    public MainCommand (String noPermissionMessage, ArgumentMatcher argumentMatcher)
+    public MainCommand (String noPermissionMessage, IArgumentMatcher IArgumentMatcher)
     {
         this.noPermMessage = ChatColor.translateAlternateColorCodes('&', noPermissionMessage);
-        this.argumentMatcher = argumentMatcher;
+        this.argumentMatcher = IArgumentMatcher;
 
         registerSubCommands();
     }
@@ -86,15 +86,15 @@ public abstract class MainCommand implements TabExecutor
      * Returns a new list of tabCompletions based on unfinished argument filtered by selected ArgumentMatcher.
      * @param tabCompletions The source tabCompletions.
      * @param arg The argument string.
-     * @param argumentMatcher The ArgumentMather.
+     * @param IArgumentMatcher The ArgumentMather.
      * @return A list of new tabCompletions.
      */
-    private static List<String> getMatchingStrings (List<String> tabCompletions, String arg, ArgumentMatcher argumentMatcher)
+    private static List<String> getMatchingStrings (List<String> tabCompletions, String arg, IArgumentMatcher IArgumentMatcher)
     {
         if (tabCompletions == null || arg == null)
             return null;
 
-        List<String> result = argumentMatcher.filter(tabCompletions, arg);
+        List<String> result = IArgumentMatcher.filter(tabCompletions, arg);
 
         Collections.sort(result);
 

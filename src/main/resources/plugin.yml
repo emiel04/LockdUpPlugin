@@ -5,9 +5,17 @@ api-version: 1.19
 depend: [ WorldEdit, WorldGuard ]
 authors: [ Emiel ]
 commands:
-  lockdup:
-    description: Base command for the plugin
-    aliases:
-      - lu
-      - lockedup
+  skills:
+    description: Base command for skills
     usage: /<command> <sub-command>
+  cells:
+    description: Base command for cells
+    usage: /<command> <sub-command>
+  coin:
+    description: Base command for economy
+    usage: /<command> <sub-command>
+  getkey:
+    description: Get a key
+    usage: "/<command> <keytype>"
+    aliases: [ key ]
+    permission: lockdupkeys.getkey

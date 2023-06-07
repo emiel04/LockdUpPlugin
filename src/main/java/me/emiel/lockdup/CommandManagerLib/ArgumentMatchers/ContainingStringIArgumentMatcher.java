@@ -1,6 +1,6 @@
 package me.emiel.lockdup.CommandManagerLib.ArgumentMatchers;
 
-import me.emiel.lockdup.CommandManagerLib.ArgumentMatcher;
+import me.emiel.lockdup.CommandManagerLib.IArgumentMatcher;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  * Filters to leave all the strings that containing the argument string.
  * Example: kill, kick, looking | ki -> kick, kill, looking
  */
-public class ContainingStringArgumentMatcher implements ArgumentMatcher
+public class ContainingStringIArgumentMatcher implements IArgumentMatcher
 {
     @Override
     public List<String> filter (List<String> tabCompletions, String argument)

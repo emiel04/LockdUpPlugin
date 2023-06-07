@@ -1,10 +1,11 @@
 package me.emiel.lockdup.Storage;
 
 import me.emiel.lockdup.Model.PlayerData;
-import me.emiel.lockdup.Model.SkillData;
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
 //7smile7 — Today at 22:55
 //IO should be done async so it doesnt really matter if you need 0.5ms or 5ms to read/write files.
 //Files are decent if you only need the data to exist on one server. It it needs to be shared between several
@@ -184,13 +185,14 @@ import java.util.concurrent.CompletableFuture;
 
 public class DataManager {
     private final Map<UUID, PlayerData> playerDataMap = new HashMap<>();
-    private final ArrayList<SkillData> skillDataList = new ArrayList<SkillData>();
+    private final ArrayList<String> skillDataList = new ArrayList<>();
     private final PlayerPersistenceHandler playerPersistenceHandler;
     private final SkillPersistenceHandler skillPersistenceHandler;
 
     public DataManager(PlayerPersistenceHandler playerPersistenceHandler, SkillPersistenceHandler skillPersistenceHandler) {
         this.playerPersistenceHandler = playerPersistenceHandler;
         this.skillPersistenceHandler = skillPersistenceHandler;
+        loadAllData();
     }
 
     public void loadPlayerData(UUID playerId) {
@@ -231,12 +233,7 @@ public class DataManager {
     }
 
     private void saveSkillData() {
-        for (SkillData skill : skillDataList) {
-            if(skill == null) {
-                continue;
-            }
-            skillPersistenceHandler.saveDataAsync(skill.getName(), skill);
-        }
+        skillPersistenceHandler.saveDataAsync(skillDataList);
     }
 
     public void saveAllData(){
@@ -244,13 +241,17 @@ public class DataManager {
         saveSkillData();
     }
 
-    public void loadAllDate(){
+    public void loadAllData(){
         loadSkillData();
     }
 
-    private void loadSkillData() {;
-        SkillData[] skillData = skillPersistenceHandler.loadDataAsync().join();
+    private void loadSkillData() {
+        String[] skillData = skillPersistenceHandler.loadDataAsync().join();
         skillDataList.addAll(Arrays.asList(skillData));
+    }
+
+    public ArrayList<String> getSkillData(){
+        return skillDataList;
     }
 
 }

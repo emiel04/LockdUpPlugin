@@ -38,7 +38,7 @@ public class PlayerJsonPersistenceHandler implements PlayerPersistenceHandler {
             try {
                 String json = Files.readString(playerFile.toPath());
                 PlayerData data =gson.fromJson(json, PlayerData.class);
-                return data == null ? new PlayerData()  : data;
+                return data == null ? new PlayerData() : data;
             } catch (IOException e) {
                 Bukkit.getServer().broadcastMessage(e.getMessage());
 

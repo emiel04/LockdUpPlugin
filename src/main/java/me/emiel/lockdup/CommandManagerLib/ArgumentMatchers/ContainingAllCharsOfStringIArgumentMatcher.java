@@ -1,6 +1,6 @@
 package me.emiel.lockdup.CommandManagerLib.ArgumentMatchers;
 
-import me.emiel.lockdup.CommandManagerLib.ArgumentMatcher;
+import me.emiel.lockdup.CommandManagerLib.IArgumentMatcher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
  * Example: help, toggle, reload | oe -> toggle, reload
  * Example: kill, kick, looking | li -> kill, looking
  */
-public class ContainingAllCharsOfStringArgumentMatcher implements ArgumentMatcher
+public class ContainingAllCharsOfStringIArgumentMatcher implements IArgumentMatcher
 {
     @Override
     public List<String> filter (List<String> tabCompletions, String argument)

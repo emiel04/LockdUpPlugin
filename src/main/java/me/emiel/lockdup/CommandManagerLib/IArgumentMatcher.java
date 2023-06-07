@@ -2,7 +2,7 @@ package me.emiel.lockdup.CommandManagerLib;
 
 import java.util.List;
 
-public interface ArgumentMatcher
+public interface IArgumentMatcher
 {
     /**
      * Filters tabCompletions based on argument string.
