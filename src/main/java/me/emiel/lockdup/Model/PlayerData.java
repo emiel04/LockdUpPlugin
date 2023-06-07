@@ -9,6 +9,7 @@ public class PlayerData {
         private Map<String, Level> levelMap = new HashMap<>();
 
         public void addExp(String skill, int exp, Player player){
+                if (exp == 0) return;
                 levelMap.computeIfAbsent(skill, key -> new Level());
                 levelMap.get(skill).addXp(exp, skill, player);
         }

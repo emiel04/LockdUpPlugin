@@ -2,6 +2,7 @@
 main_color: "&3"
 between: " &f| &r"
 accent_color1: "&6"
+error_color: "&c"
 prefix: "LockdUp"
 
 # Leveling
@@ -37,3 +38,28 @@ coinplusname: "&6&lCoin&d&l+"
 #how long a door stays open (in ticks) 20ticks = 1 second
 #if you are in creative and hit the door with a key it'll become that door.
 dooropentime: 20
+
+#Jobs
+job-world: world
+woodworking-region: woodspeed
+
+##Woodworking
+woodworking-tier-mapping:
+  OAK_WOOD:
+    tier: WOODEN
+    exp: 2
+  SPRUCE_WOOD:
+    tier: STONE
+    exp: 4
+  JUNGLE_WOOD:
+    tier: ENCHANTED_STONE
+    exp: 7
+  BIRCH_WOOD:
+    tier: IRON
+    exp: 10
+  ACACIA_WOOD:
+    tier: ENCHANTED_IRON
+    exp: 12
+  MANGROVE_WOOD:
+    tier: ENCHANTED_DIAMOND
+    exp: 15

@@ -66,9 +66,12 @@ public class Level {
         currentXp -= xpToLevelUp;
 
         player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 20, 1);
-        player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
-                new TextComponent(ChatColor.translateAlternateColorCodes('&',
-                        "Level up! | " + ChatColor.WHITE + "Level " + MessageSender.mainColor + oldLevel + " &r&l-> &r&f" + "Level " + MessageSender.mainColor + level)));
+        String actionBarMessage = ChatColor.translateAlternateColorCodes('&',
+                "Level up! " + ChatColor.GRAY + "| " + ChatColor.WHITE + "Level " + ChatColor.RESET + MessageSender.mainColor + oldLevel +
+                        ChatColor.GRAY + " -> " + ChatColor.RESET + "Level " + MessageSender.mainColor + level);
+
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(actionBarMessage));
+
     }
 
     private void sendXpActionBar(String skill, int xp, Player player) {
@@ -76,8 +79,9 @@ public class Level {
         int xpToNextLevel = calculateTotalExpNeeded(currentLevel + 1);
         String c = MessageSender.mainColor;
         String actionBarMessage = ChatColor.translateAlternateColorCodes('&',
-                "&f" + skill + "&l | &a+&f&l" + xp + " &r&f| " + c + "[&f" + currentXp + c +
-                        "/&f" + xpToNextLevel + c + "] | Level: &f" + currentLevel);
+                "&f" + skill + " &l| &a+&f&l" + xp + " &r&f| " + ChatColor.GRAY + "[" + ChatColor.WHITE +
+                        currentXp + ChatColor.GRAY + "/" + ChatColor.WHITE + xpToNextLevel + ChatColor.GRAY + "] " +
+                        ChatColor.GRAY + "| Level: " + ChatColor.WHITE + currentLevel);
 
         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(actionBarMessage));
     }

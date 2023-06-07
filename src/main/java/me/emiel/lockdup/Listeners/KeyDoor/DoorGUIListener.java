@@ -1,7 +1,7 @@
 package me.emiel.lockdup.Listeners.KeyDoor;
 
 
-import me.emiel.lockdup.GUI.KeyDoor.LevelSelectGUI;
+import me.emiel.lockdup.gui.KeyDoor.LevelSelectGUI;
 import me.emiel.lockdup.LockdUp;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;

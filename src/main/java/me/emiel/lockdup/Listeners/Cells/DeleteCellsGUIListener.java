@@ -1,6 +1,6 @@
 package me.emiel.lockdup.Listeners.Cells;
 
-import me.emiel.lockdup.GUI.Cells.RemoveAllCellsGUI;
+import me.emiel.lockdup.gui.Cells.RemoveAllCellsGUI;
 import me.emiel.lockdup.LockdUp;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.HumanEntity;

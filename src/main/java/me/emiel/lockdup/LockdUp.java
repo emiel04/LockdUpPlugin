@@ -1,11 +1,18 @@
 package me.emiel.lockdup;
 
 import com.jeff_media.customblockdata.CustomBlockData;
-import me.emiel.lockdup.CommandManagerLib.MainCommand;
-import me.emiel.lockdup.Commands.Cells.CellCommand;
-import me.emiel.lockdup.Commands.Coin.CoinCommand;
-import me.emiel.lockdup.Commands.KeyDoor.GetKey;
-import me.emiel.lockdup.Commands.Skills.SkillCommand;
+import com.sk89q.worldguard.WorldGuard;
+import com.sk89q.worldguard.protection.flags.Flag;
+import com.sk89q.worldguard.protection.flags.StateFlag;
+import com.sk89q.worldguard.protection.flags.registry.FlagConflictException;
+import com.sk89q.worldguard.protection.flags.registry.FlagRegistry;
+import me.emiel.lockdup.commandmanagerlib.MainCommand;
+import me.emiel.lockdup.commands.cells.CellCommand;
+import me.emiel.lockdup.commands.Coin.CoinCommand;
+import me.emiel.lockdup.commands.KeyDoor.GetKey;
+import me.emiel.lockdup.commands.Skills.SkillCommand;
+import me.emiel.lockdup.Jobs.Job;
+import me.emiel.lockdup.Jobs.Woodworking;
 import me.emiel.lockdup.Listeners.Cells.DeleteCellsGUIListener;
 import me.emiel.lockdup.Listeners.Cells.DoorClickListener;
 import me.emiel.lockdup.Listeners.Cells.DoorGUIListener;
@@ -24,6 +31,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.IOException;
+import java.util.List;
 
 public final class LockdUp extends JavaPlugin {
     public static DataManager getDataManager() {
@@ -50,10 +58,10 @@ public final class LockdUp extends JavaPlugin {
     private static int EXTRA_XP_PER_LEVEL;
     private static double XP_MULTIPLIER_PER_LEVEL;
     private static boolean EXPONENTIAL_CALCULATION;
-
     public static boolean isExponentialCalculation() {
         return EXPONENTIAL_CALCULATION;
     }
+    public static StateFlag WOODWORKING_FLAG;
 
     public static PersistentDataContainer getCustomData(Block block) {
         if(block.getBlockData() instanceof Bisected) {
@@ -63,6 +71,33 @@ public final class LockdUp extends JavaPlugin {
             }
         }
         return new CustomBlockData(block,getInstance());
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        addFlags();
+
+    }
+
+    private void addFlags() {
+        FlagRegistry registry = WorldGuard.getInstance().getFlagRegistry();
+        try {
+            // create a flag with the name "my-custom-flag", defaulting to true
+            StateFlag flag = new StateFlag("woodworking", false);
+            registry.register(flag);
+            WOODWORKING_FLAG = flag; // only set our field if there was no error
+        } catch (FlagConflictException e) {
+            // some other plugin registered a flag by the same name already.
+            // you can use the existing flag, but this may cause conflicts - be sure to check type
+            Flag<?> existing = registry.get("my-custom-flag");
+            if (existing instanceof StateFlag) {
+                WOODWORKING_FLAG = (StateFlag) existing;
+            } else {
+                getLogger().severe("Flag name conflict!");
+                this.getServer().getPluginManager().disablePlugin(this);
+            }
+        }
     }
 
     @Override
@@ -92,8 +127,20 @@ public final class LockdUp extends JavaPlugin {
 
 
         registerCommandsAndEvents();
+        addJobs();
         startSchedulerLong();
         startSchedulerSecond();
+    }
+
+    private void addJobs() {
+        List<Job> jobList = List.of(
+                new Woodworking("Woodworking", WOODWORKING_FLAG)
+        );
+
+        for (Job job :
+                jobList) {
+            job.setListeners();
+        }
     }
 
     private void registerCommandsAndEvents ()

@@ -1,8 +1,8 @@
 package me.emiel.lockdup.Listeners.Cells;
 
-import me.emiel.lockdup.GUI.Cells.DoorOwnedGUI;
-import me.emiel.lockdup.GUI.Cells.DoorTrustedGUI;
-import me.emiel.lockdup.GUI.Cells.DoorUnownedGUI;
+import me.emiel.lockdup.gui.Cells.DoorOwnedGUI;
+import me.emiel.lockdup.gui.Cells.DoorTrustedGUI;
+import me.emiel.lockdup.gui.Cells.DoorUnownedGUI;
 import me.emiel.lockdup.Helper.MessageSender;
 import me.emiel.lockdup.LockdUp;
 import me.emiel.lockdup.Managers.CellManager;
